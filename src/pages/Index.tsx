@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -98,13 +98,7 @@ const Index = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-white/70">Прогресс срока вклада</span>
-                      <span className="text-white">{progressPercentage}%</span>
-                    </div>
-                    <Progress value={progressPercentage} className="w-full" />
-                  </div>
+
                 </CardContent>
               </Card>
 
