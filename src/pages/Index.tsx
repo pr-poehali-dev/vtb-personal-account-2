@@ -40,7 +40,7 @@ const Index = () => {
         </div>
         
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 bg-card">
+          <TabsList className="grid w-full grid-cols-2 bg-card">
             <TabsTrigger value="overview" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white">
               <Icon name="PieChart" size={16} className="mr-2" />
               Обзор вклада
@@ -48,10 +48,6 @@ const Index = () => {
             <TabsTrigger value="history" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white">
               <Icon name="History" size={16} className="mr-2" />
               История операций
-            </TabsTrigger>
-            <TabsTrigger value="support" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white">
-              <Icon name="Headphones" size={16} className="mr-2" />
-              Служба поддержки
             </TabsTrigger>
           </TabsList>
 
@@ -177,62 +173,7 @@ const Index = () => {
             </Card>
           </TabsContent>
 
-          {/* Служба поддержки */}
-          <TabsContent value="support" className="space-y-6 mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="bg-card border-border">
-                <CardHeader>
-                  <CardTitle className="text-white">Контакты поддержки</CardTitle>
-                  <CardDescription className="text-white/70">
-                    Мы готовы помочь 24/7
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-center space-x-3 p-3 rounded-lg bg-secondary/30">
-                    <Icon name="Phone" size={20} className="text-primary" />
-                    <div>
-                      <p className="font-medium text-white">Горячая линия</p>
-                      <p className="text-white/70">8 800 100-24-24</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 rounded-lg bg-secondary/30">
-                    <Icon name="MessageCircle" size={20} className="text-primary" />
-                    <div>
-                      <p className="font-medium text-white">Онлайн-чат</p>
-                      <p className="text-white/70">Доступен в приложении</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 rounded-lg bg-secondary/30">
-                    <Icon name="Mail" size={20} className="text-primary" />
-                    <div>
-                      <p className="font-medium text-white">Email</p>
-                      <p className="text-white/70">support@vtb.ru</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
 
-              <Card className="bg-card border-border">
-                <CardHeader>
-                  <CardTitle className="text-white">Часто задаваемые вопросы</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="p-3 rounded-lg bg-secondary/30">
-                    <p className="font-medium text-white text-sm">Когда начисляются проценты?</p>
-                    <p className="text-xs text-white/70 mt-1">Проценты по вкладу "В плюсе" начисляются в конце срока</p>
-                  </div>
-                  <div className="p-3 rounded-lg bg-secondary/30">
-                    <p className="font-medium text-white text-sm">Можно ли пополнить вклад?</p>
-                    <p className="text-xs text-white/70 mt-1">Вклад "В плюсе" не предусматривает пополнения</p>
-                  </div>
-                  <div className="p-3 rounded-lg bg-secondary/30">
-                    <p className="font-medium text-white text-sm">Досрочное закрытие</p>
-                    <p className="text-xs text-white/70 mt-1">При досрочном закрытии проценты не начисляются</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
         </Tabs>
       </div>
     </div>
