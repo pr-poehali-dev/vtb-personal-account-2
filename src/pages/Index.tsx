@@ -11,14 +11,16 @@ const Index = () => {
   const depositData = {
     accountHolder: "Сидоров Виталий Александрович",
     depositType: "Вклад \"В плюсе\"",
-    amount: 1000000,
+    amount: 1057800,
     interestRate: 18.5,
     startDate: "10.07.2025",
-    endDate: "11.11.2025",
-    term: 4, // месяцев
+    endDate: "12.03.2026",
+    term: 8, // месяцев
+    accruedInterest: 57800,
+    interestDate: "11.11.2025"
   };
 
-  const progressPercentage = 10; // Условно 10% срока прошло
+  const progressPercentage = 50; // Условно 50% срока прошло
 
   return (
     <div className="min-h-screen bg-black p-4 md:p-6">
@@ -94,7 +96,7 @@ const Index = () => {
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-white/70">Срок вклада</span>
-                      <span className="text-white font-medium">{depositData.term} месяца</span>
+                      <span className="text-white font-medium">{depositData.term} месяцев</span>
                     </div>
                   </div>
 
@@ -110,9 +112,9 @@ const Index = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="text-center space-y-2">
-                      <p className="text-2xl font-bold text-primary">0 ₽</p>
+                      <p className="text-2xl font-bold text-primary">{depositData.accruedInterest.toLocaleString('ru-RU')} ₽</p>
                       <p className="text-sm text-white/70">Начисленные проценты</p>
-                      <p className="text-xs text-white/50">Проценты будут начисляться по окончании срока</p>
+                      <p className="text-xs text-white/50">Дата начисления: {depositData.interestDate}</p>
                     </div>
                   </CardContent>
                 </Card>
