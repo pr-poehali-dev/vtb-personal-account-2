@@ -152,6 +152,21 @@ const Index = () => {
                   <div className="flex items-center justify-between p-4 rounded-lg bg-secondary/50 border border-border">
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 rounded-full bg-green-900/20 flex items-center justify-center">
+                        <Icon name="TrendingUp" size={16} className="text-green-400" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-white">Начисление процентов</p>
+                        <p className="text-sm text-white/70">11.11.2025</p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-bold text-green-400">+{depositData.accruedInterest.toLocaleString('ru-RU')} ₽</p>
+                      <p className="text-sm text-white/70">Проценты</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between p-4 rounded-lg bg-secondary/50 border border-border">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 rounded-full bg-green-900/20 flex items-center justify-center">
                         <Icon name="ArrowDownLeft" size={16} className="text-green-400" />
                       </div>
                       <div>
@@ -160,7 +175,7 @@ const Index = () => {
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-green-400">+{depositData.amount.toLocaleString('ru-RU')} ₽</p>
+                      <p className="font-bold text-green-400">+1 000 000 ₽</p>
                       <p className="text-sm text-white/70">Зачисление</p>
                     </div>
                   </div>
