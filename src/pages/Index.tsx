@@ -15,7 +15,7 @@ const Index = () => {
     interestRate: 18.5,
     startDate: "10.07.2025",
     endDate: "12.03.2026",
-    term: 8, // месяцев
+    term: 4, // месяцев
     accruedInterest: 57800,
     interestDate: "11.11.2025"
   };
@@ -159,10 +159,7 @@ const Index = () => {
                         <p className="text-sm text-white/70">11.11.2025</p>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className="font-bold text-green-400">+{depositData.accruedInterest.toLocaleString('ru-RU')} ₽</p>
-                      <p className="text-sm text-white/70">Проценты</p>
-                    </div>
+                    <p className="font-bold text-green-400 whitespace-nowrap">+{depositData.accruedInterest.toLocaleString('ru-RU')} ₽</p>
                   </div>
                   <div className="flex items-center justify-between p-4 rounded-lg bg-secondary/50 border border-border">
                     <div className="flex items-center space-x-3">
@@ -174,10 +171,7 @@ const Index = () => {
                         <p className="text-sm text-white/70">10.07.2025</p>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className="font-bold text-green-400">+1 000 000 ₽</p>
-                      <p className="text-sm text-white/70">Зачисление</p>
-                    </div>
+                    <p className="font-bold text-green-400 whitespace-nowrap">+1 000 000 ₽</p>
                   </div>
                 </div>
               </CardContent>
