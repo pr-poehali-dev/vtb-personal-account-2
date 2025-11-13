@@ -96,7 +96,7 @@ const Index = () => {
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-white/70">Срок вклада</span>
-                      <span className="text-white font-medium">{depositData.term} месяцев</span>
+                      <span className="text-white font-medium">{depositData.term} месяца</span>
                     </div>
                   </div>
 
