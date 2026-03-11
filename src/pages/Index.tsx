@@ -15,7 +15,7 @@ const Index = () => {
     interestRate: 18.5,
     startDate: "10.07.2025",
     endDate: "11.07.2026",
-    term: 12, // месяцев
+    term: 4, // месяцев
     accruedInterest: 59600,
     interestDate: "11.03.2026"
   };
