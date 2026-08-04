@@ -11,13 +11,13 @@ const Index = () => {
   const depositData = {
     accountHolder: "Сидоров Виталий Александрович",
     depositType: "Вклад \"В плюсе\"",
-    amount: 1117400,
+    amount: 1179000,
     interestRate: 18.5,
     startDate: "10.07.2025",
-    endDate: "11.07.2026",
-    term: 4, // месяцев
-    accruedInterest: 59600,
-    interestDate: "11.03.2026"
+    endDate: "11.11.2026",
+    term: 16, // месяцев
+    accruedInterest: 61600,
+    interestDate: "11.07.2026"
   };
 
   const progressPercentage = 50; // Условно 50% срока прошло
@@ -112,7 +112,7 @@ const Index = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="text-center space-y-2">
-                      <p className="text-2xl font-bold text-primary">59 690 ₽</p>
+                      <p className="text-2xl font-bold text-primary">61 600 ₽</p>
                       <p className="text-sm text-white/70">Начисленные проценты</p>
                       <p className="text-xs text-white/50">Дата начисления: {depositData.interestDate}</p>
                     </div>
@@ -149,6 +149,18 @@ const Index = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
+                  <div className="flex items-center justify-between p-4 rounded-lg bg-secondary/50 border border-border">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 rounded-full bg-green-900/20 flex items-center justify-center">
+                        <Icon name="TrendingUp" size={16} className="text-green-400" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-white">Начисление процентов</p>
+                        <p className="text-sm text-white/70">11.07.2026</p>
+                      </div>
+                    </div>
+                    <p className="font-bold text-green-400 whitespace-nowrap">+61 600 ₽</p>
+                  </div>
                   <div className="flex items-center justify-between p-4 rounded-lg bg-secondary/50 border border-border">
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 rounded-full bg-green-900/20 flex items-center justify-center">
