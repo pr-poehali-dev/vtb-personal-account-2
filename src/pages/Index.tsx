@@ -101,22 +101,22 @@ const Index = () => {
         </div>
         
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 bg-card">
-            <TabsTrigger value="overview" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white">
-              <Icon name="PieChart" size={16} className="mr-2" />
-              Обзор вклада
+          <TabsList className="grid w-full grid-cols-4 bg-card h-auto p-1">
+            <TabsTrigger value="overview" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white flex-col sm:flex-row gap-1 sm:gap-2 py-2 px-1 text-xs sm:text-sm">
+              <Icon name="PieChart" size={16} />
+              <span className="truncate">Обзор</span>
             </TabsTrigger>
-            <TabsTrigger value="cards" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white">
-              <Icon name="CreditCard" size={16} className="mr-2" />
-              Карты
+            <TabsTrigger value="cards" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white flex-col sm:flex-row gap-1 sm:gap-2 py-2 px-1 text-xs sm:text-sm">
+              <Icon name="CreditCard" size={16} />
+              <span className="truncate">Карты</span>
             </TabsTrigger>
-            <TabsTrigger value="investments" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white">
-              <Icon name="TrendingUp" size={16} className="mr-2" />
-              Инвестиции
+            <TabsTrigger value="investments" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white flex-col sm:flex-row gap-1 sm:gap-2 py-2 px-1 text-xs sm:text-sm">
+              <Icon name="TrendingUp" size={16} />
+              <span className="truncate">Инвестиции</span>
             </TabsTrigger>
-            <TabsTrigger value="history" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white">
-              <Icon name="History" size={16} className="mr-2" />
-              История операций
+            <TabsTrigger value="history" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white flex-col sm:flex-row gap-1 sm:gap-2 py-2 px-1 text-xs sm:text-sm">
+              <Icon name="History" size={16} />
+              <span className="truncate">История</span>
             </TabsTrigger>
           </TabsList>
 
