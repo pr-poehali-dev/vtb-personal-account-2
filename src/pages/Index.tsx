@@ -101,10 +101,14 @@ const Index = () => {
         </div>
         
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 bg-card">
+          <TabsList className="grid w-full grid-cols-4 bg-card">
             <TabsTrigger value="overview" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white">
               <Icon name="PieChart" size={16} className="mr-2" />
               Обзор вклада
+            </TabsTrigger>
+            <TabsTrigger value="cards" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white">
+              <Icon name="CreditCard" size={16} className="mr-2" />
+              Карты
             </TabsTrigger>
             <TabsTrigger value="investments" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white">
               <Icon name="TrendingUp" size={16} className="mr-2" />
@@ -169,27 +173,6 @@ const Index = () => {
 
               {/* Боковая панель с дополнительной информацией */}
               <div className="space-y-6">
-                <div className="relative w-full aspect-[1.586/1] rounded-2xl bg-gradient-to-br from-primary to-blue-900 p-5 flex flex-col justify-between shadow-xl">
-                  <div className="flex items-center justify-between">
-                    <Icon name="Building2" size={24} className="text-white" />
-                    <span className="text-white font-semibold text-sm">{cardData.paymentSystem}</span>
-                  </div>
-                  <div>
-                    <p className="text-white/70 text-xs mb-1">Баланс карты</p>
-                    <p className="text-white text-2xl font-bold">{cardData.balance.toLocaleString('ru-RU')} ₽</p>
-                  </div>
-                  <div className="flex items-end justify-between">
-                    <div>
-                      <p className="text-white/70 text-xs mb-1">Номер карты</p>
-                      <p className="text-white text-sm font-medium tracking-wider">{cardData.cardNumber}</p>
-                    </div>
-                    <div>
-                      <p className="text-white/70 text-xs mb-1">Действует до</p>
-                      <p className="text-white text-sm font-medium">{cardData.validThru}</p>
-                    </div>
-                  </div>
-                </div>
-
                 <Card className="bg-card border-border">
                   <CardHeader>
                     <CardTitle className="text-white text-lg">Доходность</CardTitle>
@@ -229,6 +212,58 @@ const Index = () => {
                   </CardContent>
                 </Card>
               </div>
+            </div>
+          </TabsContent>
+
+          {/* Карты */}
+          <TabsContent value="cards" className="space-y-6 mt-6 data-[state=active]:animate-in data-[state=active]:fade-in-0 data-[state=active]:slide-in-from-bottom-2 duration-300">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="lg:col-span-2">
+                <div className="relative w-full max-w-md aspect-[1.586/1] rounded-2xl bg-gradient-to-br from-primary to-blue-900 p-6 flex flex-col justify-between shadow-xl">
+                  <div className="flex items-center justify-between">
+                    <Icon name="Building2" size={28} className="text-white" />
+                    <span className="text-white font-semibold text-sm">{cardData.paymentSystem}</span>
+                  </div>
+                  <div>
+                    <p className="text-white/70 text-xs mb-1">Баланс</p>
+                    <p className="text-white text-3xl font-bold">{cardData.balance.toLocaleString('ru-RU')} ₽</p>
+                  </div>
+                  <div className="flex items-end justify-between">
+                    <div>
+                      <p className="text-white/70 text-xs mb-1">Номер карты</p>
+                      <p className="text-white font-medium tracking-wider">{cardData.cardNumber}</p>
+                    </div>
+                    <div>
+                      <p className="text-white/70 text-xs mb-1">Действует до</p>
+                      <p className="text-white font-medium">{cardData.validThru}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <Card className="bg-card border-border">
+                <CardHeader>
+                  <CardTitle className="text-white text-lg">{cardData.cardName}</CardTitle>
+                  <CardDescription className="text-white/70">
+                    {depositData.accountHolder}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-white/70">Баланс</span>
+                    <span className="text-white font-bold text-xl">{cardData.balance.toLocaleString('ru-RU')} ₽</span>
+                  </div>
+                  <Separator className="bg-border" />
+                  <div className="flex justify-between items-center">
+                    <span className="text-white/70">Номер карты</span>
+                    <span className="text-white font-medium">{cardData.cardNumber}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-white/70">Платёжная система</span>
+                    <span className="text-white font-medium">{cardData.paymentSystem}</span>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </TabsContent>
 
