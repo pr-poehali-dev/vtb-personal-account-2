@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Icon from "@/components/ui/icon";
+import { useToast } from "@/hooks/use-toast";
 
 interface CurrencyRate {
   value: number;
@@ -20,6 +21,7 @@ interface RatesResponse {
 }
 
 const Index = () => {
+  const { toast } = useToast();
   const [rates, setRates] = useState<RatesResponse | null>(null);
   const [ratesLoading, setRatesLoading] = useState(true);
 
@@ -68,9 +70,19 @@ const Index = () => {
               <p className="text-white/70">Личный кабинет</p>
             </div>
           </div>
-          <Badge variant="secondary" className="bg-green-900/20 text-green-400 border-green-800">
-            Активен
-          </Badge>
+          <div className="flex items-center gap-3">
+            <Badge variant="secondary" className="bg-green-900/20 text-green-400 border-green-800">
+              Активен
+            </Badge>
+            <Button
+              variant="outline"
+              size="icon"
+              className="border-border"
+              onClick={() => toast({ title: "Настройки", description: "Раздел настроек скоро будет доступен" })}
+            >
+              <Icon name="Settings" size={18} className="text-white" />
+            </Button>
+          </div>
         </div>
         
         <Tabs defaultValue="overview" className="w-full">
@@ -181,11 +193,21 @@ const Index = () => {
                     <CardTitle className="text-white text-lg">Контакты</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
-                    <Button variant="outline" className="w-full justify-start" size="sm">
+                    <Button
+                      variant="outline"
+                      className="w-full justify-start"
+                      size="sm"
+                      onClick={() => window.location.href = "tel:88001002424"}
+                    >
                       <Icon name="Phone" size={16} className="mr-2" />
                       8 800 100-24-24
                     </Button>
-                    <Button variant="outline" className="w-full justify-start" size="sm">
+                    <Button
+                      variant="outline"
+                      className="w-full justify-start"
+                      size="sm"
+                      onClick={() => toast({ title: "Онлайн-чат", description: "Соединяем вас с оператором..." })}
+                    >
                       <Icon name="MessageCircle" size={16} className="mr-2" />
                       Онлайн-чат
                     </Button>
