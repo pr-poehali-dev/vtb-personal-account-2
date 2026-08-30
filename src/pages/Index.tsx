@@ -5,6 +5,16 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
 import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
 
@@ -24,6 +34,11 @@ const Index = () => {
   const { toast } = useToast();
   const [rates, setRates] = useState<RatesResponse | null>(null);
   const [ratesLoading, setRatesLoading] = useState(true);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [pushEnabled, setPushEnabled] = useState(true);
+  const [emailEnabled, setEmailEnabled] = useState(false);
+  const [phone, setPhone] = useState("+7 900 123-45-67");
+  const [email, setEmail] = useState("v.sidorov@mail.ru");
 
   useEffect(() => {
     fetch("https://functions.poehali.dev/bfada09f-a3f5-4b41-b8df-d2bf21e3ee9d")
@@ -78,7 +93,7 @@ const Index = () => {
               variant="outline"
               size="icon"
               className="border-border"
-              onClick={() => toast({ title: "Настройки", description: "Раздел настроек скоро будет доступен" })}
+              onClick={() => setSettingsOpen(true)}
             >
               <Icon name="Settings" size={18} className="text-white" />
             </Button>
@@ -345,6 +360,67 @@ const Index = () => {
 
         </Tabs>
       </div>
+
+      <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
+        <DialogContent className="bg-card border-border">
+          <DialogHeader>
+            <DialogTitle className="text-white">Настройки профиля</DialogTitle>
+            <DialogDescription className="text-white/70">
+              {depositData.accountHolder}
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-5 py-2">
+            <div className="space-y-2">
+              <Label htmlFor="phone" className="text-white/70">Телефон</Label>
+              <Input
+                id="phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="bg-secondary border-border text-white"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-white/70">Email</Label>
+              <Input
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="bg-secondary border-border text-white"
+              />
+            </div>
+
+            <Separator className="bg-border" />
+
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-white font-medium">Push-уведомления</p>
+                <p className="text-xs text-white/50">Операции по вкладу и карте</p>
+              </div>
+              <Switch checked={pushEnabled} onCheckedChange={setPushEnabled} />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-white font-medium">Email-рассылка</p>
+                <p className="text-xs text-white/50">Новости и предложения банка</p>
+              </div>
+              <Switch checked={emailEnabled} onCheckedChange={setEmailEnabled} />
+            </div>
+          </div>
+
+          <Button
+            className="w-full"
+            onClick={() => {
+              setSettingsOpen(false);
+              toast({ title: "Настройки сохранены", description: "Изменения успешно применены" });
+            }}
+          >
+            Сохранить
+          </Button>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
