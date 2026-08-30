@@ -1,0 +1,12 @@
+{
+  "tests": [
+    {
+      "name": "Get currency rates",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {"date": "string"},
+      "bodyMatcher": "partial"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Button } from "@/components/ui/button";
@@ -6,7 +7,30 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Icon from "@/components/ui/icon";
 
+interface CurrencyRate {
+  value: number;
+  prev: number;
+  change: number;
+}
+
+interface RatesResponse {
+  date: string | null;
+  usd: CurrencyRate;
+  eur: CurrencyRate;
+}
+
 const Index = () => {
+  const [rates, setRates] = useState<RatesResponse | null>(null);
+  const [ratesLoading, setRatesLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://functions.poehali.dev/bfada09f-a3f5-4b41-b8df-d2bf21e3ee9d")
+      .then((res) => res.json())
+      .then((data: RatesResponse) => setRates(data))
+      .catch(() => setRates(null))
+      .finally(() => setRatesLoading(false));
+  }, []);
+
   // Данные вклада
   const depositData = {
     accountHolder: "Сидоров Виталий Александрович",
@@ -50,10 +74,14 @@ const Index = () => {
         </div>
         
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 bg-card">
+          <TabsList className="grid w-full grid-cols-3 bg-card">
             <TabsTrigger value="overview" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white">
               <Icon name="PieChart" size={16} className="mr-2" />
               Обзор вклада
+            </TabsTrigger>
+            <TabsTrigger value="investments" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white">
+              <Icon name="TrendingUp" size={16} className="mr-2" />
+              Инвестиции
             </TabsTrigger>
             <TabsTrigger value="history" className="text-white data-[state=active]:bg-primary data-[state=active]:text-white">
               <Icon name="History" size={16} className="mr-2" />
@@ -164,6 +192,67 @@ const Index = () => {
                   </CardContent>
                 </Card>
               </div>
+            </div>
+          </TabsContent>
+
+          {/* Инвестиции */}
+          <TabsContent value="investments" className="space-y-6 mt-6 data-[state=active]:animate-in data-[state=active]:fade-in-0 data-[state=active]:slide-in-from-bottom-2 duration-300">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Card className="bg-card border-border">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-white">
+                    <span className="text-2xl">🇺🇸</span>
+                    Доллар США
+                  </CardTitle>
+                  <CardDescription className="text-white/70">USD / RUB</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {ratesLoading ? (
+                    <p className="text-white/50">Загрузка курса...</p>
+                  ) : rates ? (
+                    <div className="flex items-end justify-between">
+                      <p className="text-3xl font-bold text-white">{rates.usd.value.toFixed(2)} ₽</p>
+                      <span className={`flex items-center text-sm font-medium ${rates.usd.change >= 0 ? "text-green-400" : "text-red-400"}`}>
+                        <Icon name={rates.usd.change >= 0 ? "ArrowUp" : "ArrowDown"} size={14} className="mr-1" />
+                        {Math.abs(rates.usd.change).toFixed(2)} ₽
+                      </span>
+                    </div>
+                  ) : (
+                    <p className="text-white/50">Курс временно недоступен</p>
+                  )}
+                </CardContent>
+              </Card>
+
+              <Card className="bg-card border-border">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-white">
+                    <span className="text-2xl">🇪🇺</span>
+                    Евро
+                  </CardTitle>
+                  <CardDescription className="text-white/70">EUR / RUB</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {ratesLoading ? (
+                    <p className="text-white/50">Загрузка курса...</p>
+                  ) : rates ? (
+                    <div className="flex items-end justify-between">
+                      <p className="text-3xl font-bold text-white">{rates.eur.value.toFixed(2)} ₽</p>
+                      <span className={`flex items-center text-sm font-medium ${rates.eur.change >= 0 ? "text-green-400" : "text-red-400"}`}>
+                        <Icon name={rates.eur.change >= 0 ? "ArrowUp" : "ArrowDown"} size={14} className="mr-1" />
+                        {Math.abs(rates.eur.change).toFixed(2)} ₽
+                      </span>
+                    </div>
+                  ) : (
+                    <p className="text-white/50">Курс временно недоступен</p>
+                  )}
+                </CardContent>
+              </Card>
+
+              {rates?.date && (
+                <p className="md:col-span-2 text-xs text-white/50">
+                  Курсы ЦБ РФ на {new Date(rates.date).toLocaleDateString('ru-RU')}
+                </p>
+              )}
             </div>
           </TabsContent>
 
